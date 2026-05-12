@@ -852,26 +852,38 @@ footer a{color:var(--blue);text-decoration:none;}
       Ofrecemos la plataforma completa para tu grupo, empresa o comunidad. Setup en 24 horas.
     </p>
 
-    <!-- Precio y pago -->
-    <div style="margin:1.5rem 0 2rem;padding:1.5rem;background:rgba(124,58,255,.08);border:1px solid rgba(124,58,255,.25);border-radius:14px;text-align:center;">
-      <div style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Precio único · Todo incluido</div>
-      <div style="font-size:2.2rem;font-weight:900;color:var(--white);font-family:'Orbitron',monospace;">$65.000 <span style="font-size:1rem;color:var(--muted);font-family:'Exo 2',sans-serif;">CLP</span></div>
-      <div style="font-size:.85rem;color:var(--muted);margin:.5rem 0 1.2rem;">App completa · Dominio propio · 2 meses · Soporte incluido</div>
-      <a href="https://www.flow.cl/uri/2JTH0zD8y" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#7c3aff,#00c8ff);color:#fff;text-decoration:none;padding:.9rem 2.5rem;border-radius:10px;font-weight:700;font-size:1rem;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
-        💳 Pagar con Flow →
-      </a>
-      <div style="font-size:.78rem;color:var(--muted);margin-top:.75rem;">Tarjeta, débito o transferencia · Pago seguro</div>
-    </div>
-
-    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;text-align:center;">¿Tienes preguntas antes de pagar? Escríbenos:</p>
+    <!-- Formulario configurador + pago -->
     <form class="contact-form" action="https://formspree.io/f/xnjwwrwk" method="POST" id="contact-form">
-      <input type="text" name="nombre_empresa" placeholder="Tu nombre o empresa" required />
-      <input type="email" name="email" placeholder="Tu correo" required />
-      <textarea name="mensaje" placeholder="Cuéntanos qué necesitas..."></textarea>
-      <button type="submit">Enviar mensaje →</button>
+
+      <!-- Paso 1: datos -->
+      <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;">1 · Configura tu polla</div>
+
+      <input type="text" name="empresa" id="input-empresa" placeholder="Nombre de tu empresa o grupo (ej: Empresa XYZ)" required autocomplete="off" />
+      <input type="text" name="nombre_polla" id="input-polla" placeholder="Nombre de la polla (ej: Polla Mundial XYZ)" required autocomplete="off" />
+      <input type="email" name="email" placeholder="Tu correo de contacto" required />
+
+      <!-- Preview en vivo -->
+      <div id="preview-box" style="background:rgba(0,200,255,.05);border:1px solid rgba(0,200,255,.2);border-radius:10px;padding:1rem 1.2rem;font-size:.82rem;line-height:1.8;display:none;">
+        <div style="color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">Vista previa</div>
+        <div>🌐 URL: <strong style="color:#00c8ff;" id="prev-url">empresa.moxonhub.com</strong></div>
+        <div>🏆 Nombre: <strong style="color:#f5c518;" id="prev-nombre">Polla Mundial</strong></div>
+      </div>
+
+      <!-- Precio -->
+      <div style="margin:.5rem 0;padding:1.2rem 1.5rem;background:rgba(124,58,255,.08);border:1px solid rgba(124,58,255,.25);border-radius:12px;text-align:center;">
+        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;">Precio único · Todo incluido</div>
+        <div style="font-size:2rem;font-weight:900;color:var(--white);font-family:'Orbitron',monospace;">$65.000 <span style="font-size:.9rem;color:var(--muted);font-family:'Exo 2',sans-serif;">CLP</span></div>
+        <div style="font-size:.8rem;color:var(--muted);margin:.4rem 0 0;">App completa · Dominio propio · 2 meses · Soporte incluido</div>
+      </div>
+
+      <button type="submit" id="pay-btn" style="background:linear-gradient(135deg,#7c3aff,#00c8ff);border:none;color:#fff;padding:1rem 2rem;border-radius:10px;font-family:'Exo 2',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;width:100%;transition:transform .2s,box-shadow .2s;">
+        💳 Reservar y pagar con Flow →
+      </button>
+      <div style="font-size:.75rem;color:var(--muted);margin-top:.5rem;text-align:center;">Tarjeta, débito o transferencia · Pago seguro</div>
     </form>
+
     <div class="contact-success" id="contact-success">
-      ✅ ¡Mensaje enviado! Te contactaremos pronto.
+      ✅ ¡Datos recibidos! Abriendo Flow para completar el pago...
     </div>
   </div>
 </section>
@@ -982,12 +994,40 @@ document.querySelectorAll('.feat-card, .product-inner > *, .contact-inner > *').
   observer.observe(el);
 });
 
-// Formspree AJAX submit
+// Preview en vivo
+const inputEmpresa = document.getElementById('input-empresa');
+const inputPolla   = document.getElementById('input-polla');
+const previewBox   = document.getElementById('preview-box');
+const prevUrl      = document.getElementById('prev-url');
+const prevNombre   = document.getElementById('prev-nombre');
+
+function slugify(str) {
+  return str.toLowerCase().trim()
+    .normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,30);
+}
+
+function updatePreview() {
+  const emp = inputEmpresa ? inputEmpresa.value.trim() : '';
+  const pol = inputPolla   ? inputPolla.value.trim()   : '';
+  if (emp || pol) {
+    previewBox.style.display = 'block';
+    prevUrl.textContent     = emp ? slugify(emp) + '.moxonhub.com' : 'empresa.moxonhub.com';
+    prevNombre.textContent  = pol || 'Polla Mundial';
+  } else {
+    previewBox.style.display = 'none';
+  }
+}
+
+if (inputEmpresa) inputEmpresa.addEventListener('input', updatePreview);
+if (inputPolla)   inputPolla.addEventListener('input', updatePreview);
+
+// Submit: envía a Formspree y abre Flow
 const form = document.getElementById('contact-form');
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button');
+    const btn = document.getElementById('pay-btn');
     btn.textContent = 'Enviando...';
     btn.disabled = true;
     try {
@@ -999,12 +1039,13 @@ if (form) {
       if (res.ok) {
         form.style.display = 'none';
         document.getElementById('contact-success').style.display = 'block';
+        setTimeout(() => window.open('https://www.flow.cl/uri/2JTH0zD8y', '_blank'), 800);
       } else {
-        btn.textContent = 'Error, intenta de nuevo';
+        btn.textContent = '💳 Reservar y pagar con Flow →';
         btn.disabled = false;
       }
     } catch {
-      btn.textContent = 'Error, intenta de nuevo';
+      btn.textContent = '💳 Reservar y pagar con Flow →';
       btn.disabled = false;
     }
   });
