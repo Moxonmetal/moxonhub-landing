@@ -872,11 +872,39 @@ footer a{color:var(--blue);text-decoration:none;}
         <div>🏆 Nombre: <strong style="color:#f5c518;" id="prev-nombre">Polla Mundial</strong></div>
       </div>
 
-      <!-- Precio -->
-      <div style="margin:.5rem 0;padding:1.2rem 1.5rem;background:rgba(124,58,255,.08);border:1px solid rgba(124,58,255,.25);border-radius:12px;text-align:center;">
-        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;">Precio único · Todo incluido</div>
-        <div style="font-size:2rem;font-weight:900;color:var(--white);font-family:'Orbitron',monospace;">$65.000 <span style="font-size:.9rem;color:var(--muted);font-family:'Exo 2',sans-serif;">CLP</span></div>
-        <div style="font-size:.8rem;color:var(--muted);margin:.4rem 0 0;">App completa · Dominio propio · 2 meses · Soporte incluido</div>
+      <!-- Selector de plan -->
+      <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;">2 · Elige tu plan</div>
+      <input type="hidden" name="plan" id="plan-value" value="Autogestionado — $65.000 CLP" />
+
+      <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem;">
+
+        <!-- Plan 1 -->
+        <label id="plan-auto" onclick="selectPlan('auto')" style="cursor:pointer;border:2px solid rgba(0,200,255,.5);border-radius:12px;padding:1rem 1.2rem;background:rgba(0,200,255,.07);display:flex;align-items:flex-start;gap:.85rem;">
+          <span style="font-size:1.3rem;margin-top:.1rem;">🛠</span>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <strong style="font-size:.95rem;color:var(--white);">Autogestionado</strong>
+              <span style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;color:#00c8ff;">$65.000</span>
+            </div>
+            <div style="font-size:.8rem;color:var(--muted);margin-top:.25rem;">Tú administras tu polla. Nosotros hacemos el setup en 24 hrs.</div>
+          </div>
+        </label>
+
+        <!-- Plan 2 -->
+        <label id="plan-managed" onclick="selectPlan('managed')" style="cursor:pointer;border:2px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem 1.2rem;background:rgba(255,255,255,.03);display:flex;align-items:flex-start;gap:.85rem;">
+          <span style="font-size:1.3rem;margin-top:.1rem;">🌟</span>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <strong style="font-size:.95rem;color:var(--white);">Administrado por MOX ON HUB</strong>
+                <span style="font-size:.7rem;background:rgba(124,58,255,.3);color:#c4b5fd;padding:.1rem .5rem;border-radius:20px;margin-left:.5rem;">Recomendado</span>
+              </div>
+              <span style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;color:#a78bfa;">$85.000</span>
+            </div>
+            <div style="font-size:.8rem;color:var(--muted);margin-top:.25rem;">Nosotros gestionamos todo durante el torneo. Tú solo disfrutas.</div>
+          </div>
+        </label>
+
       </div>
 
       <button type="submit" id="pay-btn" style="background:linear-gradient(135deg,#7c3aff,#00c8ff);border:none;color:#fff;padding:1rem 2rem;border-radius:10px;font-family:'Exo 2',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;width:100%;transition:transform .2s,box-shadow .2s;">
@@ -1063,6 +1091,32 @@ document.querySelectorAll('.feat-card, .product-inner > *, .contact-inner > *').
   observer.observe(el);
 });
 
+// Selector de plan
+const FLOW_AUTO    = 'https://www.flow.cl/uri/2JTH0zD8y';
+const FLOW_MANAGED = 'https://www.flow.cl/uri/2JTH0zD8y'; // reemplazar cuando tengas link de $85.000
+
+let selectedPlan = 'auto';
+
+function selectPlan(plan) {
+  selectedPlan = plan;
+  const autoLabel    = document.getElementById('plan-auto');
+  const managedLabel = document.getElementById('plan-managed');
+  const planValue    = document.getElementById('plan-value');
+  if (plan === 'auto') {
+    autoLabel.style.border    = '2px solid rgba(0,200,255,.5)';
+    autoLabel.style.background = 'rgba(0,200,255,.07)';
+    managedLabel.style.border  = '2px solid rgba(255,255,255,.1)';
+    managedLabel.style.background = 'rgba(255,255,255,.03)';
+    planValue.value = 'Autogestionado — $65.000 CLP';
+  } else {
+    managedLabel.style.border  = '2px solid rgba(124,58,255,.6)';
+    managedLabel.style.background = 'rgba(124,58,255,.1)';
+    autoLabel.style.border    = '2px solid rgba(255,255,255,.1)';
+    autoLabel.style.background = 'rgba(255,255,255,.03)';
+    planValue.value = 'Administrado por MOX ON HUB — $85.000 CLP';
+  }
+}
+
 // Preview en vivo
 const inputEmpresa = document.getElementById('input-empresa');
 const inputPolla   = document.getElementById('input-polla');
@@ -1108,7 +1162,7 @@ if (form) {
       if (res.ok) {
         form.style.display = 'none';
         document.getElementById('contact-success').style.display = 'block';
-        setTimeout(() => window.open('https://www.flow.cl/uri/2JTH0zD8y', '_blank'), 800);
+        setTimeout(() => window.open(selectedPlan === 'managed' ? FLOW_MANAGED : FLOW_AUTO, '_blank'), 800);
       } else {
         btn.textContent = '💳 Reservar y pagar con Flow →';
         btn.disabled = false;
