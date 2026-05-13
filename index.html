@@ -889,6 +889,22 @@ footer a{color:var(--blue);text-decoration:none;}
     <div class="contact-success" id="contact-success">
       ✅ ¡Datos recibidos! Abriendo Flow para completar el pago...
     </div>
+
+    <!-- Formulario de dudas -->
+    <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);">
+      <p style="text-align:center;font-size:.95rem;color:var(--muted);margin-bottom:1.25rem;">
+        ¿Tienes dudas antes de comprar? <strong style="color:var(--white);">Escríbenos</strong> y te respondemos a la brevedad.
+      </p>
+      <form class="contact-form" action="https://formspree.io/f/xnjwwrwk" method="POST" id="dudas-form">
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu correo" required />
+        <textarea name="mensaje" placeholder="¿En qué te podemos ayudar?" style="min-height:100px;"></textarea>
+        <button type="submit" id="dudas-btn">Enviar mensaje →</button>
+      </form>
+      <div id="dudas-success" style="display:none;margin-top:1rem;padding:1rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:10px;color:#4ade80;font-weight:600;font-size:.9rem;text-align:center;">
+        ✅ ¡Mensaje enviado! Te contactaremos pronto.
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1054,6 +1070,34 @@ if (form) {
       }
     } catch {
       btn.textContent = '💳 Reservar y pagar con Flow →';
+      btn.disabled = false;
+    }
+  });
+}
+
+// Formulario de dudas
+const dudasForm = document.getElementById('dudas-form');
+if (dudasForm) {
+  dudasForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('dudas-btn');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(dudasForm.action, {
+        method: 'POST',
+        body: new FormData(dudasForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        dudasForm.style.display = 'none';
+        document.getElementById('dudas-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Error, intenta de nuevo';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error, intenta de nuevo';
       btn.disabled = false;
     }
   });
