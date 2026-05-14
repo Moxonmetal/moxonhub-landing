@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#06060F" />
+  <title>Polla del Mundial 2026 — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #06060F;
+      --card: #12122A;
+      --card2: #1a1a38;
+      --accent: #00c8ff;
+      --purple: #7c3aff;
+      --gold: #F5C518;
+      --silver: #C0C0C0;
+      --bronze: #CD7F32;
+      --text: #f0f0ff;
+      --muted: #7070a0;
+      --border: rgba(255,255,255,0.07);
+      --nav-h: 68px;
+      --header-h: 56px;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── WRAPPER ── */
+    #app {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      box-shadow: 0 0 80px rgba(0, 200, 255, 0.08), 0 0 160px rgba(124, 58, 255, 0.06);
+    }
+
+    /* ── DEMO BANNER ── */
+    #demo-banner {
+      background: #b45309;
+      color: #fef3c7;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 5px 0;
+      text-transform: uppercase;
+    }
+
+    /* ── HEADER ── */
+    #header {
+      height: var(--header-h);
+      background: linear-gradient(135deg, #0d0d24 0%, #12122A 100%);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 12px;
+    }
+
+    #header a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    #header a:hover { color: var(--accent); }
+
+    #header-title {
+      flex: 1;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+
+    #header-spacer { width: 52px; }
+
+    /* ── SCREENS ── */
+    .screen {
+      display: none;
+      opacity: 0;
+      padding: 16px 16px calc(var(--nav-h) + 16px);
+      min-height: calc(100vh - var(--header-h) - 22px);
+      transition: opacity 0.25s ease;
+    }
+    .screen.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* ── BOTTOM NAV ── */
+    #bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: var(--nav-h);
+      background: rgba(18, 18, 42, 0.97);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      z-index: 200;
+    }
+
+    .nav-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 4px;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .nav-btn .nav-icon { font-size: 20px; line-height: 1; }
+    .nav-btn .nav-label {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .nav-btn.active .nav-label { color: var(--accent); }
+    .nav-btn.active::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      border-radius: 0 0 4px 4px;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 12px;
+      margin-top: 4px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    /* ── RANKING ── */
+    .podium-row {
+      display: flex;
+      align-items: center;
+      padding: 13px 16px;
+      gap: 12px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .podium-row:last-child { border-bottom: none; }
+
+    .podium-row.rank-1 { background: linear-gradient(90deg, rgba(245,197,24,0.18) 0%, rgba(245,197,24,0.04) 100%); }
+    .podium-row.rank-2 { background: linear-gradient(90deg, rgba(192,192,192,0.14) 0%, rgba(192,192,192,0.03) 100%); }
+    .podium-row.rank-3 { background: linear-gradient(90deg, rgba(205,127,50,0.14) 0%, rgba(205,127,50,0.03) 100%); }
+
+    .rank-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .rank-1 .rank-badge { background: rgba(245,197,24,0.2); color: var(--gold); border: 1.5px solid var(--gold); }
+    .rank-2 .rank-badge { background: rgba(192,192,192,0.15); color: var(--silver); border: 1.5px solid var(--silver); }
+    .rank-3 .rank-badge { background: rgba(205,127,50,0.15); color: var(--bronze); border: 1.5px solid var(--bronze); }
+    .podium-row:not(.rank-1):not(.rank-2):not(.rank-3) .rank-badge {
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      border: 1.5px solid rgba(255,255,255,0.1);
+    }
+
+    .rank-name {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .rank-pts {
+      font-size: 18px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+    .rank-1 .rank-pts { color: var(--gold); }
+    .rank-2 .rank-pts { color: var(--silver); }
+    .rank-3 .rank-pts { color: var(--bronze); }
+    .podium-row:not(.rank-1):not(.rank-2):not(.rank-3) .rank-pts { color: var(--text); }
+
+    .rank-pts-label {
+      font-size: 9px;
+      color: var(--muted);
+      font-weight: 500;
+      text-align: right;
+    }
+
+    .pts-col { display: flex; flex-direction: column; align-items: flex-end; }
+
+    .medal-emoji { font-size: 16px; margin-left: 2px; }
+
+    /* ── MATCHES ── */
+    .match-card {
+      background: var(--card);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+
+    .match-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .match-group {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+
+    .match-status-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .badge-done { background: rgba(0,200,100,0.15); color: #00c864; border: 1px solid rgba(0,200,100,0.3); }
+    .badge-pending { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid rgba(255,255,255,0.1); }
+
+    .match-teams {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .team-name {
+      font-size: 15px;
+      font-weight: 700;
+      flex: 1;
+      text-align: center;
+    }
+
+    .match-score {
+      font-size: 26px;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      min-width: 60px;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    .match-locked {
+      font-size: 22px;
+      min-width: 60px;
+      text-align: center;
+      opacity: 0.4;
+    }
+
+    /* ── SPECIALS ── */
+    .special-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .special-card {
+      background: var(--card);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 14px 12px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .special-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--accent));
+    }
+
+    .special-icon { font-size: 24px; margin-bottom: 6px; }
+    .special-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .special-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .special-pts {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .special-lock {
+      margin-top: 8px;
+      font-size: 10px;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .locked-banner {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-align: center;
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .locked-banner .lock-big { font-size: 18px; display: block; margin-bottom: 4px; }
+
+    /* ── POZO ── */
+    .pozo-total {
+      background: linear-gradient(135deg, var(--card) 0%, #1a1a3f 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(0,200,255,0.2);
+      padding: 24px 20px;
+      text-align: center;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pozo-total::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% -10%, rgba(0,200,255,0.12), transparent 60%);
+    }
+
+    .pozo-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 8px;
+      position: relative;
+    }
+    .pozo-amount {
+      font-size: 38px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pozo-currency {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+      position: relative;
+    }
+
+    .prize-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .prize-row {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .prize-medal { font-size: 24px; flex-shrink: 0; }
+
+    .prize-info { flex: 1; }
+    .prize-place {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .prize-leader {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 1px;
+    }
+
+    .prize-amount-col { text-align: right; }
+    .prize-pct {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .prize-clp {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .prize-1 .prize-clp { color: var(--gold); }
+    .prize-2 .prize-clp { color: var(--silver); }
+    .prize-3 .prize-clp { color: var(--bronze); }
+
+    /* ── ADMIN BUTTON ── */
+    #admin-btn {
+      position: fixed;
+      bottom: calc(var(--nav-h) + 14px);
+      right: calc(50% - 480px/2 + 14px);
+      z-index: 300;
+      background: linear-gradient(135deg, var(--purple), #5b21b6);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 16px;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(124,58,255,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #admin-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 28px rgba(124,58,255,0.65);
+    }
+
+    @media (max-width: 480px) {
+      #admin-btn { right: 14px; }
+    }
+
+    /* ── MODAL ── */
+    #modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6,6,15,0.85);
+      z-index: 500;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0;
+    }
+    #modal-overlay.open { display: flex; }
+
+    #modal {
+      background: #16163a;
+      border-radius: 24px 24px 0 0;
+      border-top: 1px solid rgba(0,200,255,0.2);
+      width: 100%;
+      max-width: 480px;
+      padding: 24px 20px 32px;
+      max-height: 85vh;
+      overflow-y: auto;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .modal-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .admin-match {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+
+    .admin-match-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .admin-score-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .admin-score-row label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      min-width: 52px;
+    }
+
+    .admin-score-row input {
+      width: 56px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      padding: 6px 8px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .admin-score-row input:focus {
+      border-color: var(--accent);
+    }
+
+    .admin-vs {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn-save {
+      flex: 1;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .btn-save:hover { opacity: 0.9; }
+
+    .btn-cancel {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 20px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-cancel:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: linear-gradient(135deg, #00c864, #00a050);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 50px;
+      z-index: 600;
+      opacity: 0;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── UTILS ── */
+    .mb-12 { margin-bottom: 12px; }
+    .mt-16 { margin-top: 16px; }
+    .gap-8 { gap: 8px; }
+
+    /* ── LIVE INDICATOR ── */
+    .live-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 5px;
+      animation: blink 1.4s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .rank-delta {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 5px;
+      border-radius: 6px;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .rank-delta.show { opacity: 1; }
+    .rank-delta.up { background: rgba(0,200,100,0.2); color: #00c864; }
+    .rank-delta.down { background: rgba(255,60,60,0.2); color: #ff5555; }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <!-- DEMO BANNER -->
+  <div id="demo-banner">⚠ DEMO — Solo datos de ejemplo. Sin backend real.</div>
+
+  <!-- HEADER -->
+  <div id="header">
+    <a href="/">← Volver</a>
+    <div id="header-title">🏆 Polla del Mundial 2026</div>
+    <div id="header-spacer"></div>
+  </div>
+
+  <!-- ════ SCREEN: RANKING ════ -->
+  <div id="screen-ranking" class="screen active">
+    <div class="section-title"><span class="live-dot"></span>Clasificación en vivo</div>
+    <div class="card" id="ranking-list">
+      <!-- rendered by JS -->
+    </div>
+    <div class="mt-16" style="font-size:11px;color:var(--muted);text-align:center;">
+      Puntos actualizados tras cada partido · Entra resultados con ⚙️ Admin
+    </div>
+  </div>
+
+  <!-- ════ SCREEN: PARTIDOS ════ -->
+  <div id="screen-partidos" class="screen">
+    <div class="section-title">Fase de grupos — Mundial 2026</div>
+    <div id="matches-list">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+
+  <!-- ════ SCREEN: ESPECIALES ════ -->
+  <div id="screen-especiales" class="screen">
+    <div class="section-title">Predicciones especiales</div>
+    <div class="special-grid" id="specials-grid">
+      <!-- rendered by JS -->
+    </div>
+    <div class="locked-banner">
+      <span class="lock-big">🔒</span>
+      Cerradas antes del inicio del torneo
+    </div>
+  </div>
+
+  <!-- ════ SCREEN: POZO ════ -->
+  <div id="screen-pozo" class="screen">
+    <div class="pozo-total">
+      <div class="pozo-label">Pozo acumulado</div>
+      <div class="pozo-amount">$480.000</div>
+      <div class="pozo-currency">CLP · 8 participantes</div>
+    </div>
+    <div class="section-title">Distribución de premios</div>
+    <div class="prize-list" id="prize-list">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav id="bottom-nav">
+    <button class="nav-btn active" data-screen="ranking">
+      <span class="nav-icon">📊</span>
+      <span class="nav-label">Ranking</span>
+    </button>
+    <button class="nav-btn" data-screen="partidos">
+      <span class="nav-icon">📅</span>
+      <span class="nav-label">Partidos</span>
+    </button>
+    <button class="nav-btn" data-screen="especiales">
+      <span class="nav-icon">🌟</span>
+      <span class="nav-label">Especiales</span>
+    </button>
+    <button class="nav-btn" data-screen="pozo">
+      <span class="nav-icon">💰</span>
+      <span class="nav-label">Pozo</span>
+    </button>
+  </nav>
+</div>
+
+<!-- ADMIN BUTTON -->
+<button id="admin-btn">⚙️ Admin</button>
+
+<!-- ADMIN MODAL -->
+<div id="modal-overlay">
+  <div id="modal">
+    <div class="modal-title">⚙️ Panel Admin — Demo</div>
+    <div class="modal-sub">Ingresa resultados de partidos pendientes</div>
+    <div id="admin-matches">
+      <!-- rendered by JS -->
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="btn-cancel">Cancelar</button>
+      <button class="btn-save" id="btn-save">Guardar y actualizar ranking</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+  'use strict';
+
+  // ── DATA ────────────────────────────────────────────────────────────────────
+
+  const PLAYERS = [
+    { id: 'juan',   name: 'Juan Pérez',      basePoints: 142 },
+    { id: 'maria',  name: 'María González',  basePoints: 138 },
+    { id: 'carlos', name: 'Carlos Rojas',    basePoints: 131 },
+    { id: 'ana',    name: 'Ana Martínez',    basePoints: 124 },
+    { id: 'pedro',  name: 'Pedro Soto',      basePoints: 119 },
+    { id: 'sofia',  name: 'Sofía López',     basePoints: 115 },
+    { id: 'diego',  name: 'Diego Vargas',    basePoints: 108 },
+    { id: 'camila', name: 'Camila Torres',   basePoints:  95 },
+  ];
+
+  const MATCHES = [
+    {
+      id: 'm1',
+      home: 'Brasil', away: 'Marruecos',
+      group: 'Grupo A',
+      result: { home: 2, away: 0 },
+      pending: false,
+    },
+    {
+      id: 'm2',
+      home: 'Argentina', away: 'Alemania',
+      group: 'Grupo B',
+      result: { home: 1, away: 1 },
+      pending: false,
+    },
+    {
+      id: 'm3',
+      home: 'España', away: 'Francia',
+      group: 'Grupo C',
+      result: null,
+      pending: true,
+    },
+    {
+      id: 'm4',
+      home: 'México', away: 'Sudáfrica',
+      group: 'Grupo D',
+      result: null,
+      pending: true,
+    },
+    {
+      id: 'm5',
+      home: 'Portugal', away: 'EE.UU.',
+      group: 'Grupo E',
+      result: null,
+      pending: true,
+    },
+    {
+      id: 'm6',
+      home: 'Chile', away: 'Australia',
+      group: 'Grupo F',
+      result: null,
+      pending: true,
+    },
+  ];
+
+  // Fake bets: [home_prediction, away_prediction]
+  const BETS = {
+    m3: { juan:   [2,1], maria:  [1,0], carlos: [1,1], ana:    [0,1],
+          pedro:  [2,0], sofia:  [1,1], diego:  [3,1], camila: [0,0] },
+    m4: { juan:   [2,0], maria:  [1,0], carlos: [2,1], ana:    [1,1],
+          pedro:  [3,0], sofia:  [1,0], diego:  [0,1], camila: [2,0] },
+    m5: { juan:   [1,0], maria:  [2,1], carlos: [1,1], ana:    [0,0],
+          pedro:  [2,0], sofia:  [1,0], diego:  [1,2], camila: [1,1] },
+    m6: { juan:   [3,0], maria:  [2,0], carlos: [1,0], ana:    [2,1],
+          pedro:  [1,0], sofia:  [2,0], diego:  [0,0], camila: [1,1] },
+  };
+
+  const SPECIALS = [
+    { icon: '🏆', label: 'Campeón',    value: 'Brasil',   pts: 10 },
+    { icon: '🥈', label: 'Subcampeón', value: 'Argentina', pts: 5 },
+    { icon: '🥉', label: '3er lugar',  value: 'Francia',  pts: 3 },
+    { icon: '⚽', label: 'Goleador',   value: 'Mbappé',   pts: 5 },
+    { icon: '🌟', label: 'MVP',        value: 'Messi',    pts: 5 },
+    { icon: '🧤', label: 'Portero',    value: 'Courtois', pts: 5 },
+  ];
+
+  const PRIZE_POOL = 480000;
+  const PRIZE_DIST = [
+    { place: '1er Lugar', pct: 60, medal: '🥇', cls: 'prize-1' },
+    { place: '2do Lugar', pct: 25, medal: '🥈', cls: 'prize-2' },
+    { place: '3er Lugar', pct: 15, medal: '🥉', cls: 'prize-3' },
+  ];
+
+  // ── STATE ────────────────────────────────────────────────────────────────────
+
+  let state = {
+    matches: JSON.parse(JSON.stringify(MATCHES)),
+    bonusPoints: Object.fromEntries(PLAYERS.map(p => [p.id, 0])),
+  };
+
+  // ── SCORING ─────────────────────────────────────────────────────────────────
+
+  function resultClass(h, a) {
+    if (h > a) return 'home';
+    if (a > h) return 'away';
+    return 'draw';
+  }
+
+  function scorePoints(real, bet) {
+    if (real.home === bet[0] && real.away === bet[1]) return 3; // exact
+    if (resultClass(real.home, real.away) === resultClass(bet[0], bet[1])) return 1; // result
+    return 0;
+  }
+
+  function recalcBonus() {
+    const bonus = Object.fromEntries(PLAYERS.map(p => [p.id, 0]));
+    for (const match of state.matches) {
+      if (!match.pending && match.result && BETS[match.id]) {
+        for (const player of PLAYERS) {
+          const bet = BETS[match.id][player.id];
+          if (bet) {
+            bonus[player.id] += scorePoints(match.result, bet);
+          }
+        }
+      }
+    }
+    state.bonusPoints = bonus;
+  }
+
+  function getRanking() {
+    return PLAYERS
+      .map(p => ({
+        ...p,
+        total: p.basePoints + (state.bonusPoints[p.id] || 0),
+      }))
+      .sort((a, b) => b.total - a.total);
+  }
+
+  // ── RENDER ───────────────────────────────────────────────────────────────────
+
+  function renderRanking(animated) {
+    const ranking = getRanking();
+    const list = document.getElementById('ranking-list');
+    const medals = ['🥇','🥈','🥉'];
+
+    list.innerHTML = ranking.map((p, i) => {
+      const rankCls = i < 3 ? `rank-${i + 1}` : '';
+      return `
+        <div class="podium-row ${rankCls}" id="row-${p.id}">
+          <div class="rank-badge">${i + 1}</div>
+          <div class="rank-name">${p.name}</div>
+          ${i < 3 ? `<span class="medal-emoji">${medals[i]}</span>` : ''}
+          <div class="pts-col">
+            <div class="rank-pts">${p.total}</div>
+            <div class="rank-pts-label">pts</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function renderMatches() {
+    const container = document.getElementById('matches-list');
+    container.innerHTML = state.matches.map(m => {
+      const done = !m.pending && m.result !== null;
+      const scoreHtml = done
+        ? `<div class="match-score">${m.result.home}–${m.result.away}</div>`
+        : `<div class="match-locked">🔒</div>`;
+      const badge = done
+        ? `<span class="match-status-badge badge-done">Finalizado</span>`
+        : `<span class="match-status-badge badge-pending">Pendiente</span>`;
+      return `
+        <div class="match-card" id="mc-${m.id}">
+          <div class="match-header">
+            <span class="match-group">${m.group}</span>
+            ${badge}
+          </div>
+          <div class="match-teams">
+            <div class="team-name">${m.home}</div>
+            ${scoreHtml}
+            <div class="team-name">${m.away}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function renderSpecials() {
+    const grid = document.getElementById('specials-grid');
+    grid.innerHTML = SPECIALS.map(s => `
+      <div class="special-card">
+        <div class="special-icon">${s.icon}</div>
+        <div class="special-label">${s.label}</div>
+        <div class="special-value">${s.value}</div>
+        <div class="special-pts">${s.pts} pts</div>
+        <div class="special-lock">🔒 Cerrada</div>
+      </div>`).join('');
+  }
+
+  function renderPrize() {
+    const ranking = getRanking();
+    const list = document.getElementById('prize-list');
+    list.innerHTML = PRIZE_DIST.map((d, i) => {
+      const amount = Math.round(PRIZE_POOL * d.pct / 100);
+      const leader = ranking[i] ? ranking[i].name : '—';
+      return `
+        <div class="prize-row ${d.cls}">
+          <div class="prize-medal">${d.medal}</div>
+          <div class="prize-info">
+            <div class="prize-place">${d.place} · ${d.pct}%</div>
+            <div class="prize-leader">${leader}</div>
+          </div>
+          <div class="prize-amount-col">
+            <div class="prize-pct">CLP</div>
+            <div class="prize-clp">$${amount.toLocaleString('es-CL')}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function renderAdminPanel() {
+    const pending = state.matches.filter(m => m.pending);
+    const container = document.getElementById('admin-matches');
+    if (pending.length === 0) {
+      container.innerHTML = '<div style="text-align:center;color:var(--muted);padding:20px 0;">Todos los partidos ya tienen resultado.</div>';
+      return;
+    }
+    container.innerHTML = pending.map(m => `
+      <div class="admin-match">
+        <div class="admin-match-name">${m.home} vs ${m.away}</div>
+        <div class="admin-score-row">
+          <label>${m.home}</label>
+          <input type="number" min="0" max="20" value="" placeholder="0" id="inp-${m.id}-home" />
+          <span class="admin-vs">–</span>
+          <input type="number" min="0" max="20" value="" placeholder="0" id="inp-${m.id}-away" />
+          <label style="margin-left:4px;">${m.away}</label>
+        </div>
+      </div>`).join('');
+  }
+
+  // ── NAVIGATION ───────────────────────────────────────────────────────────────
+
+  const screens = ['ranking', 'partidos', 'especiales', 'pozo'];
+
+  function showScreen(name) {
+    screens.forEach(s => {
+      const el = document.getElementById(`screen-${s}`);
+      if (s === name) {
+        el.classList.add('active');
+        requestAnimationFrame(() => { el.style.opacity = '1'; });
+      } else {
+        el.style.opacity = '0';
+        el.classList.remove('active');
+      }
+    });
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.screen === name);
+    });
+  }
+
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => showScreen(btn.dataset.screen));
+  });
+
+  // ── ADMIN MODAL ───────────────────────────────────────────────────────────────
+
+  function openModal() {
+    renderAdminPanel();
+    document.getElementById('modal-overlay').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
+
+  document.getElementById('admin-btn').addEventListener('click', openModal);
+  document.getElementById('btn-cancel').addEventListener('click', closeModal);
+  document.getElementById('modal-overlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  });
+
+  document.getElementById('btn-save').addEventListener('click', () => {
+    const pending = state.matches.filter(m => m.pending);
+    let updated = 0;
+
+    for (const m of pending) {
+      const homeInput = document.getElementById(`inp-${m.id}-home`);
+      const awayInput = document.getElementById(`inp-${m.id}-away`);
+      if (!homeInput || !awayInput) continue;
+
+      const h = homeInput.value.trim();
+      const a = awayInput.value.trim();
+
+      if (h === '' || a === '') continue; // skip unfilled
+
+      const hNum = parseInt(h, 10);
+      const aNum = parseInt(a, 10);
+
+      if (isNaN(hNum) || isNaN(aNum) || hNum < 0 || aNum < 0) continue;
+
+      // Update match in state
+      const stateMatch = state.matches.find(x => x.id === m.id);
+      if (stateMatch) {
+        stateMatch.result = { home: hNum, away: aNum };
+        stateMatch.pending = false;
+        updated++;
+      }
+    }
+
+    if (updated === 0) {
+      showToast('Ingresa al menos un resultado para guardar');
+      return;
+    }
+
+    recalcBonus();
+    renderRanking(true);
+    renderMatches();
+    renderPrize();
+    closeModal();
+    showToast(`✅ ${updated} resultado${updated > 1 ? 's' : ''} guardado${updated > 1 ? 's' : ''}. Ranking actualizado.`);
+  });
+
+  // ── TOAST ─────────────────────────────────────────────────────────────────────
+
+  let toastTimer = null;
+  function showToast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+  }
+
+  // ── INIT ─────────────────────────────────────────────────────────────────────
+
+  recalcBonus();
+  renderRanking();
+  renderMatches();
+  renderSpecials();
+  renderPrize();
+</script>
+</body>
+</html>
