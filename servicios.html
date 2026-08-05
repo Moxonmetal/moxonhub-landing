@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Servicios — MOX ON HUB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#06061a;
+  --blue:#00c8ff;
+  --purple:#7c3aff;
+  --white:#f0f4ff;
+  --muted:#6870a0;
+  --gold:#f5c518;
+}
+body{font-family:'Exo 2',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;}
+
+nav{
+  padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,6,26,.9);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(0,200,255,.1);
+  position:sticky;top:0;z-index:100;
+}
+.nav-logo{font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--blue);}
+.nav-back{font-size:.85rem;color:var(--blue);text-decoration:none;border:1px solid rgba(0,200,255,.3);padding:.4rem 1rem;border-radius:20px;transition:background .2s;}
+.nav-back:hover{background:rgba(0,200,255,.08);}
+
+.hero{
+  text-align:center;padding:3rem 1.5rem 2rem;
+  background:linear-gradient(180deg,rgba(124,58,255,.1) 0%,transparent 100%);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.hero h1{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;margin-bottom:.6rem;}
+.hero h1 span{color:var(--blue);}
+.hero p{color:var(--muted);font-size:.95rem;max-width:600px;margin:0 auto;}
+
+.container{max-width:1000px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+
+.section-title{
+  font-family:'Orbitron',monospace;font-size:.8rem;font-weight:700;
+  color:var(--blue);text-transform:uppercase;letter-spacing:.1em;
+  margin-bottom:1.5rem;padding-bottom:.5rem;
+  border-bottom:1px solid rgba(0,200,255,.2);
+}
+
+/* ── TIPOS DE SERVICIO ── */
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.1rem;
+}
+.service-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
+  padding:1.5rem;
+  transition:border-color .2s, transform .2s;
+}
+.service-card:hover{border-color:rgba(0,200,255,.25);transform:translateY(-3px);}
+.service-card-icon{font-size:1.6rem;margin-bottom:.7rem;}
+.service-card-title{font-family:'Orbitron',monospace;font-size:.85rem;font-weight:700;margin-bottom:.5rem;color:var(--white);}
+.service-card-desc{font-size:.85rem;color:var(--muted);line-height:1.6;}
+.placeholder-tag{
+  display:inline-block;font-size:.62rem;color:#fbbf24;background:rgba(245,197,24,.1);
+  border:1px solid rgba(245,197,24,.25);border-radius:20px;padding:.15rem .55rem;
+  margin-top:.6rem;letter-spacing:.05em;text-transform:uppercase;
+}
+
+/* ── EJEMPLOS EN VIDEO VERTICAL ── */
+.verticals-row{
+  display:flex;gap:1rem;overflow-x:auto;
+  padding:.5rem .25rem 1.25rem;
+  scroll-snap-type:x proximity;
+}
+.verticals-row::-webkit-scrollbar{height:6px;}
+.verticals-row::-webkit-scrollbar-thumb{background:rgba(0,200,255,.25);border-radius:10px;}
+.vertical-card{
+  flex:0 0 auto;
+  width:190px;
+  aspect-ratio:9/16;
+  border-radius:16px;
+  scroll-snap-align:start;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(160deg,#1a1a40,#0a0a22);
+  border:1px solid rgba(0,200,255,.15);
+  display:flex;align-items:center;justify-content:center;
+}
+.vertical-card::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 30% 20%, rgba(124,58,255,.25) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,200,255,.18) 0%, transparent 55%);
+}
+.vertical-play{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:1.1rem;
+  backdrop-filter:blur(4px);
+  z-index:1;
+}
+.vertical-label{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:.7rem .8rem;
+  background:linear-gradient(0deg,rgba(0,0,0,.7),transparent);
+  font-size:.72rem;color:#c0c8e8;
+  font-weight:600;
+}
+
+/* ── CTA ── */
+.services-cta{
+  text-align:center;padding:2rem;
+  background:rgba(124,58,255,.06);
+  border:1px solid rgba(124,58,255,.2);
+  border-radius:16px;
+  margin-top:3rem;
+}
+.services-cta p{color:var(--muted);margin-bottom:1rem;font-size:.9rem;}
+.services-cta a{
+  display:inline-block;background:linear-gradient(135deg,var(--purple),var(--blue));
+  color:#fff;text-decoration:none;padding:.8rem 2rem;border-radius:10px;
+  font-weight:700;font-size:.9rem;
+}
+
+footer{text-align:center;padding:2rem;border-top:1px solid rgba(255,255,255,.06);color:var(--muted);font-size:.82rem;}
+footer a{color:var(--blue);text-decoration:none;}
+
+@media(max-width:480px){
+  .vertical-card{width:150px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">MOX<span> ON</span> HUB</a>
+  <a href="/" class="nav-back">← Volver</a>
+</nav>
+
+<div class="hero">
+  <h1>Nuestros <span>Servicios</span></h1>
+  <p>Desglose de lo que hacemos — texto de esta página aún por definir, esto es la distribución base.</p>
+</div>
+
+<div class="container">
+
+  <section id="tipos">
+    <div class="section-title">Tipos de servicio</div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-card-icon">🎥</div>
+        <div class="service-card-title">Videos corporativos</div>
+        <div class="service-card-desc">Descripción pendiente de este tipo de servicio.</div>
+        <span class="placeholder-tag">texto provisional</span>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">📱</div>
+        <div class="service-card-title">Contenido para redes</div>
+        <div class="service-card-desc">Descripción pendiente de este tipo de servicio.</div>
+        <span class="placeholder-tag">texto provisional</span>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">🚀</div>
+        <div class="service-card-title">Potencia tu material</div>
+        <div class="service-card-desc">Editamos y optimizamos remotamente el video que ya tienes — de tu evento, celular o cámara — y lo llevamos a otro nivel.</div>
+        <span class="placeholder-tag">texto provisional</span>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">🎨</div>
+        <div class="service-card-title">Identidad y storytelling</div>
+        <div class="service-card-desc">Descripción pendiente de este tipo de servicio.</div>
+        <span class="placeholder-tag">texto provisional</span>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">✂️</div>
+        <div class="service-card-title">Edición y postproducción</div>
+        <div class="service-card-desc">Descripción pendiente de este tipo de servicio.</div>
+        <span class="placeholder-tag">texto provisional</span>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">🧩</div>
+        <div class="service-card-title">Proyectos a medida</div>
+        <div class="service-card-desc">Descripción pendiente de este tipo de servicio.</div>
+        <span class="placeholder-tag">texto provisional</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="ejemplos" style="margin-top:3rem;">
+    <div class="section-title">Ejemplos (video vertical)</div>
+    <p style="color:var(--muted);font-size:.88rem;margin-bottom:.25rem;">Piezas de ejemplo en formato vertical — reels / stories. Videos reales pendientes de subir.</p>
+    <div class="verticals-row">
+      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 01</span></div>
+      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 02</span></div>
+      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 03</span></div>
+      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 04</span></div>
+      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 05</span></div>
+      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 06</span></div>
+    </div>
+  </section>
+
+  <div class="services-cta">
+    <p>¿Tienes un proyecto en mente?</p>
+    <a href="/#contacto">Cuéntanos tu proyecto →</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 MOX ON HUB — Desarrollo Audiovisual para Empresas · Chile</p>
+  <p style="margin-top:.4rem"><a href="mailto:hola@moxonhub.com">hola@moxonhub.com</a></p>
+</footer>
+
+</body>
+</html>

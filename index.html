@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>MOX ON HUB — Soluciones Digitales</title>
-<meta name="description" content="MOX ON HUB — Herramientas digitales que conectan comunidades. Polla del Mundial 2026."/>
+<title>MOX ON HUB — Desarrollo Audiovisual para Empresas</title>
+<meta name="description" content="MOX ON HUB — Desarrollo audiovisual para empresas, marcas y equipos. Potenciamos tu idea hasta lograr el objetivo de mensaje y la satisfacción de resultado."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
@@ -357,34 +357,12 @@ section{position:relative;z-index:1;}
 .slide-title{font-family:'Orbitron',monospace;font-size:.7rem;color:#fff;font-weight:700;}
 .slide-badge{font-size:.6rem;background:rgba(255,255,255,.15);padding:.2rem .5rem;border-radius:20px;color:rgba(255,255,255,.8);}
 .slide-body{padding:.75rem;flex:1;overflow:hidden;}
-/* ranking */
-.rank-item{display:flex;align-items:center;gap:.5rem;padding:.45rem .5rem;border-radius:8px;margin-bottom:.35rem;font-size:.72rem;}
-.rank-item.gold{background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.2);}
-.rank-item.silver{background:rgba(192,192,192,.07);border:1px solid rgba(192,192,192,.15);}
-.rank-item.bronze{background:rgba(205,127,50,.07);border:1px solid rgba(205,127,50,.15);}
-.rank-item.normal{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);}
-.rank-pos{font-family:'Orbitron',monospace;font-size:.65rem;font-weight:700;width:18px;text-align:center;}
-.rank-name{flex:1;color:#c0c8e8;}
-.rank-pts{font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;color:#f5c518;}
-/* matches */
-.match-mini{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.55rem .7rem;margin-bottom:.4rem;}
-.match-mini-teams{display:flex;align-items:center;justify-content:space-between;font-size:.7rem;margin-bottom:.3rem;}
-.match-mini-score{background:rgba(245,197,24,.12);color:#f5c518;font-family:'Orbitron',monospace;font-size:.7rem;font-weight:700;padding:.15rem .4rem;border-radius:4px;}
-.match-mini-time{font-size:.6rem;color:#6870a0;text-align:center;}
-.match-mini-live{font-size:.6rem;color:#22c55e;text-align:center;font-weight:700;}
-/* predicciones */
-.pred-mini{background:rgba(124,58,255,.08);border:1px solid rgba(124,58,255,.2);border-radius:8px;padding:.6rem .75rem;margin-bottom:.4rem;display:flex;align-items:center;justify-content:space-between;font-size:.7rem;}
-.pred-mini-label{color:#c0c8e8;}
-.pred-mini-val{color:#a78bfa;font-weight:600;}
-.pred-mini-pts{font-size:.6rem;background:rgba(124,58,255,.2);color:#a78bfa;padding:.15rem .4rem;border-radius:20px;}
-/* pozo */
-.pozo-total{text-align:center;padding:1rem;background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.15);border-radius:10px;margin-bottom:.75rem;}
-.pozo-amount{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:#f5c518;}
-.pozo-label{font-size:.65rem;color:#6870a0;margin-top:.2rem;}
-.pozo-row{display:flex;align-items:center;justify-content:space-between;padding:.4rem .5rem;border-radius:7px;margin-bottom:.3rem;font-size:.7rem;}
-.pozo-row.p1{background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.15);}
-.pozo-row.p2{background:rgba(192,192,192,.06);border:1px solid rgba(192,192,192,.12);}
-.pozo-row.p3{background:rgba(205,127,50,.06);border:1px solid rgba(205,127,50,.12);}
+/* pasos del proceso */
+.step-row{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.55rem .7rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem;}
+.step-icon{font-size:1rem;flex-shrink:0;}
+.step-text{flex:1;}
+.step-title{font-size:.72rem;font-weight:700;color:#e2e6f5;}
+.step-desc{font-size:.62rem;color:#8b93b8;margin-top:.1rem;}
 /* nav bottom */
 .phone-nav{
   display:flex;background:#0d0d20;border-top:1px solid rgba(255,255,255,.06);
@@ -549,7 +527,7 @@ footer a{color:var(--blue);text-decoration:none;}
 <!-- NAVBAR -->
 <nav>
   <a href="#" class="nav-logo">MOX<span> ON</span> HUB</a>
-  <a href="#dudas" class="nav-cta">Contáctanos</a>
+  <a href="#contacto" class="nav-cta">Contáctanos</a>
 </nav>
 
 <!-- HERO -->
@@ -628,40 +606,14 @@ footer a{color:var(--blue);text-decoration:none;}
     <div class="logo-word right">ON</div>
   </div>
 
-  <p class="tagline">Soluciones digitales que <strong>conectan comunidades</strong></p>
-  <p class="hero-sub">Herramientas tecnológicas para grupos · Chile · LATAM</p>
-
-  <!-- Cuenta regresiva al Mundial -->
-  <div id="wc-countdown" style="margin-bottom:1.5rem;">
-    <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.6rem;">⚽ Faltan para el Mundial 2026</div>
-    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
-      <div style="text-align:center;min-width:56px;">
-        <div id="wc-d" style="font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;color:var(--white);line-height:1;">00</div>
-        <div style="font-size:.65rem;color:var(--muted);margin-top:.2rem;">DÍAS</div>
-      </div>
-      <div style="color:var(--muted);font-size:1.8rem;font-family:'Orbitron',monospace;line-height:1;align-self:flex-start;margin-top:.1rem;">:</div>
-      <div style="text-align:center;min-width:56px;">
-        <div id="wc-h" style="font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;color:var(--blue);line-height:1;">00</div>
-        <div style="font-size:.65rem;color:var(--muted);margin-top:.2rem;">HORAS</div>
-      </div>
-      <div style="color:var(--muted);font-size:1.8rem;font-family:'Orbitron',monospace;line-height:1;align-self:flex-start;margin-top:.1rem;">:</div>
-      <div style="text-align:center;min-width:56px;">
-        <div id="wc-m" style="font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;color:var(--blue);line-height:1;">00</div>
-        <div style="font-size:.65rem;color:var(--muted);margin-top:.2rem;">MIN</div>
-      </div>
-      <div style="color:var(--muted);font-size:1.8rem;font-family:'Orbitron',monospace;line-height:1;align-self:flex-start;margin-top:.1rem;">:</div>
-      <div style="text-align:center;min-width:56px;">
-        <div id="wc-s" style="font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;color:var(--purple);line-height:1;">00</div>
-        <div style="font-size:.65rem;color:var(--muted);margin-top:.2rem;">SEG</div>
-      </div>
-    </div>
-  </div>
+  <p class="tagline">Desarrollo audiovisual que <strong>potencia tu mensaje</strong></p>
+  <p class="hero-sub">Producción de video para empresas, marcas y equipos · Chile · LATAM</p>
 
   <div class="hero-btns">
-    <a href="#producto" class="btn-primary">
-      🏆 Ver Polla del Mundial →
+    <a href="/servicios.html" class="btn-primary">
+      🎬 Ver servicios →
     </a>
-    <a href="#dudas" class="btn-secondary">
+    <a href="#contacto" class="btn-secondary">
       Contáctanos
     </a>
   </div>
@@ -674,138 +626,115 @@ footer a{color:var(--blue);text-decoration:none;}
 
 <div class="divider"></div>
 
-<!-- PRODUCTO -->
-<section class="product" id="producto">
+<!-- SERVICIOS -->
+<section class="product" id="servicios">
   <div class="product-inner">
     <div class="product-info">
-      <div class="product-badge">⚡ PRODUCTO ESTRELLA</div>
-      <div class="section-label">Mundial FIFA 2026</div>
-      <h2 class="section-title">🏆 Polla del<br/><span>Mundial 2026</span></h2>
+      <div class="product-badge">🎬 DESARROLLO AUDIOVISUAL</div>
+      <div class="section-label">Para empresas y marcas</div>
+      <h2 class="section-title">Contenido que<br/><span>potencia tu mensaje</span></h2>
       <p class="section-desc">
-        La plataforma definitiva para organizar tu polla del Mundial. Ranking automático, resultados en tiempo real y app instalable en el celular.
+        Creamos piezas audiovisuales para empresas, áreas de trabajo, grupos y marcas — desde la idea hasta el resultado final. Cada proyecto se diseña para cumplir un objetivo de mensaje claro y dejar satisfecho a quien lo pidió.
       </p>
       <ul class="product-feats">
-        <li><div class="feat-icon">⚽</div> 104 partidos — fase de grupos hasta la Final</li>
-        <li><div class="feat-icon">📊</div> Ranking automático en tiempo real</li>
-        <li><div class="feat-icon">🔄</div> Resultados sincronizados con FIFA</li>
-        <li><div class="feat-icon">📱</div> App instalable en iPhone y Android</li>
-        <li><div class="feat-icon">🏆</div> Predicciones especiales: campeón, goleador y más</li>
-        <li><div class="feat-icon">💰</div> Pozo acumulado con distribución configurable</li>
+        <li><div class="feat-icon">🎥</div> Videos corporativos e institucionales</li>
+        <li><div class="feat-icon">📱</div> Contenido para redes sociales y campañas</li>
+        <li><div class="feat-icon">🚀</div> Potenciamos el material que ya tienes — 100% remoto</li>
+        <li><div class="feat-icon">🎨</div> Identidad visual y storytelling de marca</li>
+        <li><div class="feat-icon">✂️</div> Edición y postproducción profesional</li>
+        <li><div class="feat-icon">📈</div> Enfoque en objetivo de mensaje y resultado</li>
       </ul>
       <div class="product-cta">
         <a href="#contacto" class="btn-primary">
-          Quiero mi polla →
-        </a>
-        <a href="https://demo.moxonhub.com" target="_blank" class="btn-secondary" style="margin-left:.75rem;">
-          🎮 Ver demo en vivo →
+          Cuéntanos tu proyecto →
         </a>
       </div>
     </div>
 
-    <!-- Mockup animado del celular -->
+    <!-- Mockup animado: proceso de trabajo -->
     <div class="product-mockup">
       <div class="mockup-glow"></div>
       <div class="mockup-phone">
         <div class="phone-notch"></div>
         <div class="phone-screen">
 
-          <!-- SLIDE 1: Ranking -->
+          <!-- SLIDE 1: Brief -->
           <div class="phone-slide active" id="slide-0">
             <div class="slide-header">
-              <span class="slide-title">🏆 Polla 2026</span>
-              <span class="slide-badge">Ranking</span>
+              <span class="slide-title">🎬 Proceso</span>
+              <span class="slide-badge">Brief</span>
             </div>
             <div class="slide-body">
-              <div class="rank-item gold"><span class="rank-pos" style="color:#f5c518">1</span><span class="rank-name">🇨🇱 Juan P.</span><span class="rank-pts">142 pts</span></div>
-              <div class="rank-item silver"><span class="rank-pos" style="color:#c0c0c0">2</span><span class="rank-name">🇨🇱 María G.</span><span class="rank-pts">138 pts</span></div>
-              <div class="rank-item bronze"><span class="rank-pos" style="color:#cd7f32">3</span><span class="rank-name">🇨🇱 Carlos R.</span><span class="rank-pts">131 pts</span></div>
-              <div class="rank-item normal"><span class="rank-pos" style="color:#6870a0">4</span><span class="rank-name">🇨🇱 Ana M.</span><span class="rank-pts">124 pts</span></div>
-              <div class="rank-item normal"><span class="rank-pos" style="color:#6870a0">5</span><span class="rank-name">🇨🇱 Pedro S.</span><span class="rank-pts">119 pts</span></div>
-              <div class="rank-item normal"><span class="rank-pos" style="color:#6870a0">6</span><span class="rank-name">🇨🇱 Sofía L.</span><span class="rank-pts">115 pts</span></div>
-              <div class="rank-item normal"><span class="rank-pos" style="color:#6870a0">7</span><span class="rank-name">🇨🇱 Diego V.</span><span class="rank-pts">108 pts</span></div>
+              <div class="step-row"><span class="step-icon">🎯</span><div class="step-text"><div class="step-title">Objetivo</div><div class="step-desc">Qué mensaje quieres transmitir</div></div></div>
+              <div class="step-row"><span class="step-icon">🏢</span><div class="step-text"><div class="step-title">Marca</div><div class="step-desc">Tono e identidad visual</div></div></div>
+              <div class="step-row"><span class="step-icon">👥</span><div class="step-text"><div class="step-title">Audiencia</div><div class="step-desc">A quién le hablamos</div></div></div>
+              <div class="step-row"><span class="step-icon">📅</span><div class="step-text"><div class="step-title">Plazos</div><div class="step-desc">Fecha y formato de entrega</div></div></div>
             </div>
             <div class="phone-nav">
-              <div class="phone-nav-btn active-nav">📊<br>Ranking</div>
-              <div class="phone-nav-btn">📅<br>Partidos</div>
-              <div class="phone-nav-btn">🌟<br>Especiales</div>
-              <div class="phone-nav-btn">💰<br>Pozo</div>
+              <div class="phone-nav-btn active-nav">📝<br>Brief</div>
+              <div class="phone-nav-btn">🎬<br>Guion</div>
+              <div class="phone-nav-btn">🗂<br>Material</div>
+              <div class="phone-nav-btn">🎁<br>Entrega</div>
             </div>
           </div>
 
-          <!-- SLIDE 2: Calendario -->
+          <!-- SLIDE 2: Guion -->
           <div class="phone-slide" id="slide-1">
             <div class="slide-header">
-              <span class="slide-title">🏆 Polla 2026</span>
-              <span class="slide-badge">Partidos</span>
+              <span class="slide-title">🎬 Proceso</span>
+              <span class="slide-badge">Guion</span>
             </div>
             <div class="slide-body">
-              <div class="match-mini">
-                <div class="match-mini-teams"><span>🇧🇷 Brasil</span><span class="match-mini-score">2 – 0</span><span>🇲🇦 Marruecos</span></div>
-                <div class="match-mini-time">✅ Tu apuesta: 2-0 · +3 pts</div>
-              </div>
-              <div class="match-mini">
-                <div class="match-mini-teams"><span>🇦🇷 Argentina</span><span class="match-mini-score">1 – 1</span><span>🇩🇪 Alemania</span></div>
-                <div class="match-mini-live">🔴 EN VIVO · min 67</div>
-              </div>
-              <div class="match-mini">
-                <div class="match-mini-teams"><span>🇪🇸 España</span><span style="font-size:.65rem;color:#00c8ff;">vs</span><span>🇫🇷 Francia</span></div>
-                <div class="match-mini-time">⏱ Hoy 23:45 CLT · Abierta</div>
-              </div>
-              <div class="match-mini">
-                <div class="match-mini-teams"><span>🇵🇹 Portugal</span><span style="font-size:.65rem;color:#00c8ff;">vs</span><span>🇺🇸 EE.UU.</span></div>
-                <div class="match-mini-time">📅 Mañana 20:00 CLT</div>
-              </div>
+              <div class="step-row"><span class="step-icon">✍️</span><div class="step-text"><div class="step-title">Guion</div><div class="step-desc">Estructura narrativa para tu contenido</div></div></div>
+              <div class="step-row"><span class="step-icon">🎬</span><div class="step-text"><div class="step-title">Storyboard</div><div class="step-desc">Cómo se ordenan tus clips y fotos</div></div></div>
+              <div class="step-row"><span class="step-icon">🎵</span><div class="step-text"><div class="step-title">Referencias</div><div class="step-desc">Estilo, música y ritmo</div></div></div>
+              <div class="step-row"><span class="step-icon">✅</span><div class="step-text"><div class="step-title">Aprobación</div><div class="step-desc">Validamos el concepto contigo antes de editar</div></div></div>
             </div>
             <div class="phone-nav">
-              <div class="phone-nav-btn">📊<br>Ranking</div>
-              <div class="phone-nav-btn active-nav">📅<br>Partidos</div>
-              <div class="phone-nav-btn">🌟<br>Especiales</div>
-              <div class="phone-nav-btn">💰<br>Pozo</div>
+              <div class="phone-nav-btn">📝<br>Brief</div>
+              <div class="phone-nav-btn active-nav">🎬<br>Guion</div>
+              <div class="phone-nav-btn">🗂<br>Material</div>
+              <div class="phone-nav-btn">🎁<br>Entrega</div>
             </div>
           </div>
 
-          <!-- SLIDE 3: Predicciones -->
+          <!-- SLIDE 3: Material -->
           <div class="phone-slide" id="slide-2">
             <div class="slide-header">
-              <span class="slide-title">🏆 Polla 2026</span>
-              <span class="slide-badge">Especiales</span>
+              <span class="slide-title">🎬 Proceso</span>
+              <span class="slide-badge">Material</span>
             </div>
             <div class="slide-body">
-              <div style="font-size:.65rem;color:#6870a0;margin-bottom:.5rem;">Tus predicciones especiales</div>
-              <div class="pred-mini"><span class="pred-mini-label">🏆 Campeón</span><span class="pred-mini-val">Brasil</span><span class="pred-mini-pts">10 pts</span></div>
-              <div class="pred-mini"><span class="pred-mini-label">🥈 Subcampeón</span><span class="pred-mini-val">Argentina</span><span class="pred-mini-pts">5 pts</span></div>
-              <div class="pred-mini"><span class="pred-mini-label">🥉 3er lugar</span><span class="pred-mini-val">Francia</span><span class="pred-mini-pts">3 pts</span></div>
-              <div class="pred-mini"><span class="pred-mini-label">⚽ Goleador</span><span class="pred-mini-val">Pendiente</span><span class="pred-mini-pts">5 pts</span></div>
-              <div class="pred-mini"><span class="pred-mini-label">🌟 MVP</span><span class="pred-mini-val">Pendiente</span><span class="pred-mini-pts">5 pts</span></div>
+              <div class="step-row"><span class="step-icon">📥</span><div class="step-text"><div class="step-title">Recepción</div><div class="step-desc">Nos compartes tus videos, fotos y archivos</div></div></div>
+              <div class="step-row"><span class="step-icon">🔍</span><div class="step-text"><div class="step-title">Selección</div><div class="step-desc">Elegimos las mejores tomas y momentos</div></div></div>
+              <div class="step-row"><span class="step-icon">🧩</span><div class="step-text"><div class="step-title">Curaduría</div><div class="step-desc">Organizamos todo el material disponible</div></div></div>
+              <div class="step-row"><span class="step-icon">💡</span><div class="step-text"><div class="step-title">Enfoque creativo</div><div class="step-desc">Definimos cómo potenciar lo que ya tienes</div></div></div>
             </div>
             <div class="phone-nav">
-              <div class="phone-nav-btn">📊<br>Ranking</div>
-              <div class="phone-nav-btn">📅<br>Partidos</div>
-              <div class="phone-nav-btn active-nav">🌟<br>Especiales</div>
-              <div class="phone-nav-btn">💰<br>Pozo</div>
+              <div class="phone-nav-btn">📝<br>Brief</div>
+              <div class="phone-nav-btn">🎬<br>Guion</div>
+              <div class="phone-nav-btn active-nav">🗂<br>Material</div>
+              <div class="phone-nav-btn">🎁<br>Entrega</div>
             </div>
           </div>
 
-          <!-- SLIDE 4: Pozo -->
+          <!-- SLIDE 4: Entrega -->
           <div class="phone-slide" id="slide-3">
             <div class="slide-header">
-              <span class="slide-title">🏆 Polla 2026</span>
-              <span class="slide-badge">Pozo</span>
+              <span class="slide-title">🎬 Proceso</span>
+              <span class="slide-badge">Entrega</span>
             </div>
             <div class="slide-body">
-              <div class="pozo-total">
-                <div class="pozo-amount">$480.000</div>
-                <div class="pozo-label">CLP · 16 participantes</div>
-              </div>
-              <div class="pozo-row p1"><span>🥇 1er lugar (60%)</span><span style="color:#f5c518;font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;">$288.000</span></div>
-              <div class="pozo-row p2"><span>🥈 2do lugar (25%)</span><span style="color:#c0c0c0;font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;">$120.000</span></div>
-              <div class="pozo-row p3"><span>🥉 3er lugar (15%)</span><span style="color:#cd7f32;font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;">$72.000</span></div>
+              <div class="step-row"><span class="step-icon">✂️</span><div class="step-text"><div class="step-title">Edición</div><div class="step-desc">Ritmo y narrativa cuidada</div></div></div>
+              <div class="step-row"><span class="step-icon">🎨</span><div class="step-text"><div class="step-title">Color y gráfica</div><div class="step-desc">Identidad visual coherente</div></div></div>
+              <div class="step-row"><span class="step-icon">🔊</span><div class="step-text"><div class="step-title">Mezcla de audio</div><div class="step-desc">Sonido profesional</div></div></div>
+              <div class="step-row"><span class="step-icon">📦</span><div class="step-text"><div class="step-title">Entrega final</div><div class="step-desc">Formatos listos para cada canal</div></div></div>
             </div>
             <div class="phone-nav">
-              <div class="phone-nav-btn">📊<br>Ranking</div>
-              <div class="phone-nav-btn">📅<br>Partidos</div>
-              <div class="phone-nav-btn">🌟<br>Especiales</div>
-              <div class="phone-nav-btn active-nav">💰<br>Pozo</div>
+              <div class="phone-nav-btn">📝<br>Brief</div>
+              <div class="phone-nav-btn">🎬<br>Guion</div>
+              <div class="phone-nav-btn">🗂<br>Material</div>
+              <div class="phone-nav-btn active-nav">🎁<br>Entrega</div>
             </div>
           </div>
 
@@ -817,7 +746,7 @@ footer a{color:var(--blue);text-decoration:none;}
         <div class="mockup-dot" id="dot-2"></div>
         <div class="mockup-dot" id="dot-3"></div>
       </div>
-      <div class="mockup-screen-label" id="mockup-label">RANKING</div>
+      <div class="mockup-screen-label" id="mockup-label">BRIEF</div>
     </div>
   </div>
 </section>
@@ -828,39 +757,37 @@ footer a{color:var(--blue);text-decoration:none;}
 <section class="features">
   <div class="features-inner">
     <div class="section-label">Por qué elegir MOX ON</div>
-    <h2 class="section-title">Todo lo que necesitas,<br/><span>sin complicaciones</span></h2>
+    <h2 class="section-title">Ideas que se convierten<br/><span>en resultados</span></h2>
     <div class="features-grid">
       <div class="feat-card">
-        <div class="feat-card-icon">⚡</div>
-        <div class="feat-card-title">Apuestas en tiempo real</div>
-        <div class="feat-card-desc">Cada partido se bloquea automáticamente 5 minutos antes del pitazo inicial. Sin trampas, sin discusiones.</div>
+        <div class="feat-card-icon">🎬</div>
+        <div class="feat-card-title">Postproducción integral</div>
+        <div class="feat-card-desc">Desde tu material hasta la entrega final. Un solo equipo, un solo responsable, cero fricción.</div>
       </div>
       <div class="feat-card">
-        <div class="feat-card-icon">🤖</div>
-        <div class="feat-card-title">Resultados automáticos</div>
-        <div class="feat-card-desc">Los resultados se actualizan automáticamente cada 5 minutos. El ranking se calcula solo. El administrador no hace nada.</div>
+        <div class="feat-card-icon">🎯</div>
+        <div class="feat-card-title">Enfocado en objetivos</div>
+        <div class="feat-card-desc">Cada pieza se diseña para cumplir un objetivo de mensaje claro, no solo para verse bien.</div>
       </div>
       <div class="feat-card">
-        <div class="feat-card-icon">🌟</div>
-        <div class="feat-card-title">Predicciones especiales</div>
-        <div class="feat-card-desc">Campeón (10 pts), Subcampeón, 3er lugar, Goleador, Mejor jugador y Mejor portero. Todo configurable.</div>
+        <div class="feat-card-icon">🏢</div>
+        <div class="feat-card-title">Para empresas y equipos</div>
+        <div class="feat-card-desc">Trabajamos con marcas, áreas internas, grupos y comunidades que necesitan comunicar algo importante.</div>
       </div>
       <div class="feat-card">
-        <div class="feat-card-icon">💰</div>
-        <div class="feat-card-title">Pozo configurable</div>
-        <div class="feat-card-desc">Cuota, porcentajes de premio y moneda (CLP, USD, EUR y más de 15 monedas de LATAM). El pozo se calcula solo.</div>
+        <div class="feat-card-icon">🎨</div>
+        <div class="feat-card-title">Identidad coherente</div>
+        <div class="feat-card-desc">Cuidamos que cada video hable el mismo idioma visual que tu marca.</div>
       </div>
       <div class="feat-card">
-        <div class="feat-card-icon">📱</div>
-        <div class="feat-card-title">PWA — app nativa</div>
-        <div class="feat-card-desc">Se instala en iPhone y Android como una app real. Sin App Store, sin Play Store. Funciona offline.<br>
-          <button onclick="document.getElementById('modal-instalar').style.display='flex'" style="background:none;border:none;color:var(--blue);font-size:.82rem;cursor:pointer;padding:0;margin-top:.4rem;font-family:'Exo 2',sans-serif;">📲 Cómo instalarla →</button>
-        </div>
+        <div class="feat-card-icon">✂️</div>
+        <div class="feat-card-title">Postproducción profesional</div>
+        <div class="feat-card-desc">Edición, color y sonido con estándar de agencia.</div>
       </div>
       <div class="feat-card">
-        <div class="feat-card-icon">🛠</div>
-        <div class="feat-card-title">Panel de admin completo</div>
-        <div class="feat-card-desc">Aprobar participantes, ver el pozo, confirmar premios. Control total desde cualquier celular.<br><a href="/tutorial.html" style="color:var(--blue);font-size:.82rem;text-decoration:none;margin-top:.4rem;display:inline-block;">📖 Ver tutorial →</a></div>
+        <div class="feat-card-icon">📈</div>
+        <div class="feat-card-title">Resultado y satisfacción</div>
+        <div class="feat-card-desc">Medimos el éxito por el impacto del mensaje y la satisfacción de quien lo pidió.</div>
       </div>
     </div>
   </div>
@@ -872,150 +799,24 @@ footer a{color:var(--blue);text-decoration:none;}
 <section class="contact" id="contacto">
   <div class="contact-inner">
     <div class="section-label">Contacto</div>
-    <h2 class="section-title">¿Quieres tu<br/><span>propia polla?</span></h2>
+    <h2 class="section-title">¿Listo para<br/><span>contar tu historia?</span></h2>
     <p class="section-desc" style="margin:0 auto 1rem;">
-      Ofrecemos la plataforma completa para tu grupo, empresa o comunidad. Setup en 24 horas.
+      Cuéntanos qué necesita comunicar tu empresa, marca o equipo y te proponemos la solución audiovisual adecuada.
     </p>
 
-    <!-- Formulario configurador + pago -->
     <form class="contact-form" action="https://formspree.io/f/xnjwwrwk" method="POST" id="contact-form">
-
-      <!-- Paso 1: datos -->
-      <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;">1 · Configura tu polla</div>
-
-      <input type="text" name="empresa" id="input-empresa" placeholder="Nombre de tu empresa o grupo (ej: Empresa XYZ)" required autocomplete="off" />
-      <input type="text" name="nombre_polla" id="input-polla" placeholder="Nombre de la polla (ej: Polla Mundial XYZ)" required autocomplete="off" />
+      <input type="text" name="nombre" placeholder="Tu nombre" required />
+      <input type="text" name="empresa" placeholder="Empresa, marca o equipo" required autocomplete="off" />
       <input type="email" name="email" placeholder="Tu correo de contacto" required />
-
-      <!-- Preview en vivo -->
-      <div id="preview-box" style="background:rgba(0,200,255,.05);border:1px solid rgba(0,200,255,.2);border-radius:10px;padding:1rem 1.2rem;font-size:.82rem;line-height:1.8;display:none;">
-        <div style="color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">Vista previa</div>
-        <div>🌐 URL: <strong style="color:#00c8ff;" id="prev-url">empresa.moxonhub.com</strong></div>
-        <div>🏆 Nombre: <strong style="color:#f5c518;" id="prev-nombre">Polla Mundial</strong></div>
-      </div>
-
-      <!-- Selector de ubicación -->
-      <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;">2 · ¿Dónde estás?</div>
-      <div style="display:flex;gap:.5rem;margin-bottom:1rem;">
-        <button type="button" id="btn-chile" onclick="selectRegion('chile')"
-          style="flex:1;padding:.7rem;border-radius:10px;border:2px solid rgba(0,200,255,.5);background:rgba(0,200,255,.07);color:var(--white);font-family:'Exo 2',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;">
-          🇨🇱 Chile
-        </button>
-        <button type="button" id="btn-intl" onclick="selectRegion('intl')"
-          style="flex:1;padding:.7rem;border-radius:10px;border:2px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:var(--white);font-family:'Exo 2',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;">
-          🌎 Internacional
-        </button>
-      </div>
-      <input type="hidden" name="region" id="region-value" value="chile" />
-
-      <!-- Selector de plan -->
-      <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;">3 · Elige tu plan</div>
-      <input type="hidden" name="plan" id="plan-value" value="Autogestionado — $50.000 CLP" />
-
-      <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem;">
-
-        <!-- Plan 1 -->
-        <label id="plan-auto" onclick="selectPlan('auto')" style="cursor:pointer;border:2px solid rgba(0,200,255,.5);border-radius:12px;padding:1rem 1.2rem;background:rgba(0,200,255,.07);display:flex;align-items:flex-start;gap:.85rem;">
-          <span style="font-size:1.3rem;margin-top:.1rem;">🛠</span>
-          <div style="flex:1;">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <strong style="font-size:.95rem;color:var(--white);">Autogestionado</strong>
-              <span id="price-auto" style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;color:#00c8ff;">$50.000 CLP</span>
-            </div>
-            <div style="font-size:.8rem;color:var(--muted);margin-top:.25rem;">Tú administras tu polla. Nosotros hacemos el setup en 24 hrs.</div>
-          </div>
-        </label>
-
-        <!-- Plan 2 -->
-        <label id="plan-managed" onclick="selectPlan('managed')" style="cursor:pointer;border:2px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem 1.2rem;background:rgba(255,255,255,.03);display:flex;align-items:flex-start;gap:.85rem;">
-          <span style="font-size:1.3rem;margin-top:.1rem;">🌟</span>
-          <div style="flex:1;">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <div>
-                <strong style="font-size:.95rem;color:var(--white);">Administrado por MOX ON HUB</strong>
-                <span style="font-size:.7rem;background:rgba(124,58,255,.3);color:#c4b5fd;padding:.1rem .5rem;border-radius:20px;margin-left:.5rem;">Recomendado</span>
-              </div>
-              <span id="price-managed" style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;color:#a78bfa;">$69.000 CLP</span>
-            </div>
-            <div style="font-size:.8rem;color:var(--muted);margin-top:.25rem;">Nosotros gestionamos todo durante el torneo. Tú solo disfrutas.</div>
-          </div>
-        </label>
-
-      </div>
-
-      <button type="submit" id="pay-btn" style="background:linear-gradient(135deg,#7c3aff,#00c8ff);border:none;color:#fff;padding:1rem 2rem;border-radius:10px;font-family:'Exo 2',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;width:100%;transition:transform .2s,box-shadow .2s;">
-        💳 Reservar y pagar →
-      </button>
-      <div style="font-size:.75rem;color:var(--muted);margin-top:.5rem;text-align:center;">
-        Tarjeta, débito o transferencia · Pago seguro<br>
-        <a href="/terminos.html" target="_blank" style="color:var(--muted);text-decoration:underline;font-size:.72rem;">Términos y condiciones</a>
-      </div>
+      <textarea name="mensaje" placeholder="Cuéntanos tu proyecto: qué necesitas comunicar y a quién" style="min-height:130px;"></textarea>
+      <button type="submit" id="contact-btn">Enviar mensaje →</button>
     </form>
 
     <div class="contact-success" id="contact-success">
-      ✅ ¡Datos recibidos! Abriendo pasarela de pago...
-    </div>
-
-    <!-- Formulario de dudas -->
-    <div id="dudas" style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);">
-      <p style="text-align:center;font-size:.95rem;color:var(--muted);margin-bottom:1.25rem;">
-        ¿Tienes dudas antes de comprar? <strong style="color:var(--white);">Escríbenos</strong> y te respondemos a la brevedad · <a href="/faq.html" style="color:var(--blue);text-decoration:none;font-size:.85rem;">Ver FAQ →</a>
-      </p>
-      <form class="contact-form" action="https://formspree.io/f/xnjwwrwk" method="POST" id="dudas-form">
-        <input type="text" name="nombre" placeholder="Tu nombre" required />
-        <input type="email" name="email" placeholder="Tu correo" required />
-        <textarea name="mensaje" placeholder="¿En qué te podemos ayudar?" style="min-height:100px;"></textarea>
-        <button type="submit" id="dudas-btn">Enviar mensaje →</button>
-      </form>
-      <div id="dudas-success" style="display:none;margin-top:1rem;padding:1rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:10px;color:#4ade80;font-weight:600;font-size:.9rem;text-align:center;">
-        ✅ ¡Mensaje enviado! Te contactaremos pronto.
-      </div>
+      ✅ ¡Mensaje enviado! Te contactaremos pronto.
     </div>
   </div>
 </section>
-
-<!-- MODAL INSTALAR -->
-<div id="modal-instalar" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1rem;">
-  <div style="background:#12122A;border:1px solid rgba(0,200,255,.2);border-radius:20px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;padding:2rem;position:relative;">
-    <button onclick="document.getElementById('modal-instalar').style.display='none'" style="position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.08);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;">✕</button>
-    <h2 style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;margin-bottom:1.5rem;color:var(--white);">📲 Instalar la app</h2>
-
-    <!-- iPhone -->
-    <div style="margin-bottom:1.5rem;">
-      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;">
-        <span style="font-size:1.3rem;">🍎</span>
-        <strong style="font-size:.95rem;color:var(--white);">iPhone (Safari)</strong>
-      </div>
-      <ol style="padding-left:1.25rem;color:#a0a8c8;font-size:.88rem;line-height:1.9;">
-        <li>Abre <strong style="color:var(--white);">Safari</strong> y entra a tu URL de la polla</li>
-        <li>Toca el botón de <strong style="color:var(--white);">compartir</strong> (cuadrado con flecha ↑) en la barra inferior</li>
-        <li>Desliza y toca <strong style="color:var(--white);">"Añadir a pantalla de inicio"</strong></li>
-        <li>Confirma el nombre y toca <strong style="color:var(--white);">Añadir</strong></li>
-      </ol>
-      <div style="background:rgba(245,197,24,.07);border:1px solid rgba(245,197,24,.2);border-radius:8px;padding:.6rem .9rem;font-size:.8rem;color:#fbbf24;margin-top:.6rem;">
-        ⚠️ Debe ser Safari, no Chrome ni otro navegador.
-      </div>
-    </div>
-
-    <!-- Android -->
-    <div>
-      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;">
-        <span style="font-size:1.3rem;">🤖</span>
-        <strong style="font-size:.95rem;color:var(--white);">Android (Chrome)</strong>
-      </div>
-      <ol style="padding-left:1.25rem;color:#a0a8c8;font-size:.88rem;line-height:1.9;">
-        <li>Abre <strong style="color:var(--white);">Chrome</strong> y entra a tu URL de la polla</li>
-        <li>Toca los <strong style="color:var(--white);">tres puntos ⋮</strong> arriba a la derecha</li>
-        <li>Toca <strong style="color:var(--white);">"Añadir a pantalla de inicio"</strong> o <strong style="color:var(--white);">"Instalar app"</strong></li>
-        <li>Confirma tocando <strong style="color:var(--white);">Añadir</strong></li>
-      </ol>
-      <div style="background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:.6rem .9rem;font-size:.8rem;color:#4ade80;margin-top:.6rem;">
-        💡 Queda como ícono en tu pantalla, se abre como app real.
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer>
@@ -1026,17 +827,11 @@ footer a{color:var(--blue);text-decoration:none;}
       @moxonhub
     </a>
   </div>
-  <p>© 2026 MOX ON HUB — Soluciones Digitales · Chile</p>
+  <p>© 2026 MOX ON HUB — Desarrollo Audiovisual para Empresas · Chile</p>
   <p style="margin-top:.4rem">
-    <a href="https://polla.moxonhub.com" target="_blank">polla.moxonhub.com</a>
-    &nbsp;·&nbsp;
     <a href="mailto:hola@moxonhub.com">hola@moxonhub.com</a>
     &nbsp;·&nbsp;
-    <a href="/tutorial.html">Tutorial admin</a>
-    &nbsp;·&nbsp;
     <a href="/faq.html">FAQ</a>
-    &nbsp;·&nbsp;
-    <a href="/terminos.html">Términos</a>
   </p>
 </footer>
 
@@ -1135,97 +930,12 @@ document.querySelectorAll('.feat-card, .product-inner > *, .contact-inner > *').
   observer.observe(el);
 });
 
-// Links de pago
-const LINKS = {
-  chile:  { auto: 'https://www.flow.cl/uri/a8WGYSzYV', managed: 'https://www.flow.cl/uri/NKgkSYq9G' },
-  intl:   { auto: 'https://mpago.la/2WcYABS',          managed: 'https://mpago.la/1BvD3vW' }
-};
-const PRICES = {
-  chile:  { auto: '$50.000 CLP', managed: '$69.000 CLP' },
-  intl:   { auto: 'USD $60',     managed: 'USD $70' }
-};
-
-let selectedPlan   = 'auto';
-let selectedRegion = 'chile';
-
-function selectRegion(region) {
-  selectedRegion = region;
-  const btnChile = document.getElementById('btn-chile');
-  const btnIntl  = document.getElementById('btn-intl');
-  document.getElementById('region-value').value = region;
-  if (region === 'chile') {
-    btnChile.style.border = '2px solid rgba(0,200,255,.5)';
-    btnChile.style.background = 'rgba(0,200,255,.07)';
-    btnIntl.style.border = '2px solid rgba(255,255,255,.1)';
-    btnIntl.style.background = 'rgba(255,255,255,.03)';
-  } else {
-    btnIntl.style.border = '2px solid rgba(0,200,255,.5)';
-    btnIntl.style.background = 'rgba(0,200,255,.07)';
-    btnChile.style.border = '2px solid rgba(255,255,255,.1)';
-    btnChile.style.background = 'rgba(255,255,255,.03)';
-  }
-  updatePrices();
-}
-
-function updatePrices() {
-  document.getElementById('price-auto').textContent    = PRICES[selectedRegion].auto;
-  document.getElementById('price-managed').textContent = PRICES[selectedRegion].managed;
-}
-
-function selectPlan(plan) {
-  selectedPlan = plan;
-  const autoLabel    = document.getElementById('plan-auto');
-  const managedLabel = document.getElementById('plan-managed');
-  const planValue    = document.getElementById('plan-value');
-  if (plan === 'auto') {
-    autoLabel.style.border    = '2px solid rgba(0,200,255,.5)';
-    autoLabel.style.background = 'rgba(0,200,255,.07)';
-    managedLabel.style.border  = '2px solid rgba(255,255,255,.1)';
-    managedLabel.style.background = 'rgba(255,255,255,.03)';
-    planValue.value = `Autogestionado — ${PRICES[selectedRegion].auto}`;
-  } else {
-    managedLabel.style.border  = '2px solid rgba(124,58,255,.6)';
-    managedLabel.style.background = 'rgba(124,58,255,.1)';
-    autoLabel.style.border    = '2px solid rgba(255,255,255,.1)';
-    autoLabel.style.background = 'rgba(255,255,255,.03)';
-    planValue.value = `Administrado por MOX ON HUB — ${PRICES[selectedRegion].managed}`;
-  }
-}
-
-// Preview en vivo
-const inputEmpresa = document.getElementById('input-empresa');
-const inputPolla   = document.getElementById('input-polla');
-const previewBox   = document.getElementById('preview-box');
-const prevUrl      = document.getElementById('prev-url');
-const prevNombre   = document.getElementById('prev-nombre');
-
-function slugify(str) {
-  return str.toLowerCase().trim()
-    .normalize('NFD').replace(/[̀-ͯ]/g,'')
-    .replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,30);
-}
-
-function updatePreview() {
-  const emp = inputEmpresa ? inputEmpresa.value.trim() : '';
-  const pol = inputPolla   ? inputPolla.value.trim()   : '';
-  if (emp || pol) {
-    previewBox.style.display = 'block';
-    prevUrl.textContent     = emp ? slugify(emp) + '.moxonhub.com' : 'empresa.moxonhub.com';
-    prevNombre.textContent  = pol || 'Polla Mundial';
-  } else {
-    previewBox.style.display = 'none';
-  }
-}
-
-if (inputEmpresa) inputEmpresa.addEventListener('input', updatePreview);
-if (inputPolla)   inputPolla.addEventListener('input', updatePreview);
-
-// Submit: envía a Formspree y abre Flow
+// Envío del formulario de contacto
 const form = document.getElementById('contact-form');
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = document.getElementById('pay-btn');
+    const btn = document.getElementById('contact-btn');
     btn.textContent = 'Enviando...';
     btn.disabled = true;
     try {
@@ -1237,35 +947,6 @@ if (form) {
       if (res.ok) {
         form.style.display = 'none';
         document.getElementById('contact-success').style.display = 'block';
-        setTimeout(() => window.open(LINKS[selectedRegion][selectedPlan], '_blank'), 800);
-      } else {
-        btn.textContent = '💳 Reservar y pagar con Flow →';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = '💳 Reservar y pagar con Flow →';
-      btn.disabled = false;
-    }
-  });
-}
-
-// Formulario de dudas
-const dudasForm = document.getElementById('dudas-form');
-if (dudasForm) {
-  dudasForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById('dudas-btn');
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
-    try {
-      const res = await fetch(dudasForm.action, {
-        method: 'POST',
-        body: new FormData(dudasForm),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        dudasForm.style.display = 'none';
-        document.getElementById('dudas-success').style.display = 'block';
       } else {
         btn.textContent = 'Error, intenta de nuevo';
         btn.disabled = false;
@@ -1277,32 +958,10 @@ if (dudasForm) {
   });
 }
 
-// Cuenta regresiva al Mundial
-const WC_START = new Date('2026-06-11T19:00:00Z').getTime();
-function pad2(n){ return String(n).padStart(2,'0'); }
-function updateWCCountdown(){
-  const diff = WC_START - Date.now();
-  if(diff <= 0){
-    document.getElementById('wc-countdown').innerHTML = '<div style="font-size:1.1rem;color:#22c55e;font-weight:700;">⚽ ¡El Mundial ya comenzó!</div>';
-    return;
-  }
-  const s  = Math.floor(diff/1000);
-  const d  = Math.floor(s/86400);
-  const h  = Math.floor((s%86400)/3600);
-  const m  = Math.floor((s%3600)/60);
-  const sc = s%60;
-  document.getElementById('wc-d').textContent = pad2(d);
-  document.getElementById('wc-h').textContent = pad2(h);
-  document.getElementById('wc-m').textContent = pad2(m);
-  document.getElementById('wc-s').textContent = pad2(sc);
-}
-setInterval(updateWCCountdown, 1000);
-updateWCCountdown();
-
 // Carrusel del mockup
 const slides = document.querySelectorAll('.phone-slide');
 const dots = document.querySelectorAll('.mockup-dot');
-const labels = ['RANKING', 'PARTIDOS', 'PREDICCIONES', 'POZO'];
+const labels = ['BRIEF', 'GUION', 'MATERIAL', 'ENTREGA'];
 const label = document.getElementById('mockup-label');
 let current = 0;
 
