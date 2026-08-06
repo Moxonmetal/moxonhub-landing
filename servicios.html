@@ -92,6 +92,11 @@ nav{
     radial-gradient(ellipse 70% 50% at 30% 20%, rgba(124,58,255,.25) 0%, transparent 60%),
     radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,200,255,.18) 0%, transparent 55%);
 }
+.vertical-card.has-video video{
+  position:relative;z-index:1;
+  width:100%;height:100%;
+  object-fit:cover;
+}
 .vertical-play{
   width:44px;height:44px;border-radius:50%;
   background:rgba(255,255,255,.12);
@@ -184,14 +189,26 @@ footer a{color:var(--blue);text-decoration:none;}
 
   <section id="ejemplos" style="margin-top:3rem;">
     <div class="section-title">Ejemplos (video vertical)</div>
-    <p style="color:var(--muted);font-size:.88rem;margin-bottom:.25rem;">Piezas de ejemplo en formato vertical — reels / stories. Videos reales pendientes de subir.</p>
+    <p style="color:var(--muted);font-size:.88rem;margin-bottom:.25rem;">Piezas de ejemplo en formato vertical — reels / stories.</p>
     <div class="verticals-row">
-      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 01</span></div>
-      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 02</span></div>
-      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 03</span></div>
-      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 04</span></div>
-      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 05</span></div>
-      <div class="vertical-card"><span class="vertical-play">▶</span><span class="vertical-label">Ejemplo 06</span></div>
+      <div class="vertical-card has-video">
+        <video src="assets/videos/ejemplo-01.mp4" poster="assets/videos/ejemplo-01.jpg" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="vertical-card has-video">
+        <video src="assets/videos/ejemplo-02.mp4" poster="assets/videos/ejemplo-02.jpg" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="vertical-card has-video">
+        <video src="assets/videos/ejemplo-03.mp4" poster="assets/videos/ejemplo-03.jpg" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="vertical-card has-video">
+        <video src="assets/videos/ejemplo-04.mp4" poster="assets/videos/ejemplo-04.jpg" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="vertical-card has-video">
+        <video src="assets/videos/ejemplo-05.mp4" poster="assets/videos/ejemplo-05.jpg" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="vertical-card has-video">
+        <video src="assets/videos/ejemplo-06.mp4" poster="assets/videos/ejemplo-06.jpg" controls playsinline preload="metadata"></video>
+      </div>
     </div>
   </section>
 
